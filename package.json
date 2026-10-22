@@ -1,0 +1,47 @@
+{
+  "name": "yt-player",
+  "version": "1.0.0",
+  "description": "Player web YouTube com letras sincronizadas (LRCLIB) — versão desktop Electron",
+  "main": "electron/main.js",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "web": "node server.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.ytplayer.app",
+    "productName": "YT Player",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "electron/**",
+      "public/**",
+      "server.js"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "linux": {
+      "target": "AppImage"
+    },
+    "mac": {
+      "target": "dmg",
+      "category": "public.app-category.music"
+    }
+  },
+  "allowScripts": {
+    "electron@33.4.11": true
+  }
+}

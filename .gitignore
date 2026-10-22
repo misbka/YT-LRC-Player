@@ -1,0 +1,25 @@
+# Dependências Node
+node_modules/
+package-lock.json
+
+# Build do Electron
+dist/
+out/
+
+# Ambiente e segredos
+.env
+.env.*
+
+# Logs
+*.log
+npm-debug.log*
+
+# Sistema
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Editores
+.vscode/
+.idea/
+*.swp
