@@ -1,5 +1,10 @@
 # 🎵 YT Player — YouTube + Letras Sincronizadas
 
+#
+![](https://i.ibb.co/pjGZyXz7/img1.png)
+#
+![](https://i.ibb.co/PyMVg0n/img2.png)
+
 Player de música web que busca faixas no YouTube e reproduz com **letra sincronizada em tempo real** (estilo karaoke), usando letras do [LRCLIB](https://lrclib.net/).
 
 Funciona como **app desktop (Electron)** ou direto no **navegador**. O backend é Node puro — sem banco de dados e sem chave de API.
