@@ -1,120 +1,119 @@
-# 🎵 YT Player — YouTube + Letras Sincronizadas
+# 🎵 YT Player — YouTube + Synchronized Lyrics
 
-#
-![](https://i.ibb.co/pjGZyXz7/img1.png)
-#
-![](https://i.ibb.co/PyMVg0n/img2.png)
+![YT Player Screenshot 1](https://i.ibb.co/pjGZyXz7/img1.png)
 
-Player de música web que busca faixas no YouTube e reproduz com **letra sincronizada em tempo real** (estilo karaoke), usando letras do [LRCLIB](https://lrclib.net/).
+![YT Player Screenshot 2](https://i.ibb.co/PyMVg0n/img2.png)
 
-Funciona como **app desktop (Electron)** ou direto no **navegador**. O backend é Node puro — sem banco de dados e sem chave de API.
+A web-based music player that searches for tracks on YouTube and plays them with **real-time synchronized lyrics** (karaoke-style), using lyrics from [LRCLIB](https://lrclib.net/).
 
-## ✨ Funcionalidades
+Works as either a **desktop app (Electron)** or directly in your **web browser**. The backend uses pure Node.js — no database or API key required.
 
-- 🔍 **Buscar músicas** no YouTube (título, canal, duração, views e thumbnail)
-- ▶️ **Player embutido** com controles próprios: tocar/pausar, anterior/próxima, barra de progresso e volume
-- 📜 **Letra sincronizada via LRCLIB** — a linha atual é destacada conforme a música toca, com scroll automático
-- 🖱️ **Clique numa linha da letra** para pular direto para aquele momento da música
-- 🎵 **Playlists** — crie, renomeie e exclua playlists; adicione músicas pelo ➕ dos resultados ou do player; reordene (⬆⬇) e remova (✕); toque em ordem ou **embaralhada** (🔀)
-- 💾 **Playlists persistidas** no `localStorage` — sobrevivem ao fechar o app e ao recarregar a página
-- 🧠 **Busca inteligente da letra** — limpa o título ("Official Video", "Lyrics", "[4K]"...), separa artista/título, usa canais "* - Topic" como artista e prioriza resultados com duração compatível
-- ↩️ **Fallback** para letra sem sincronização (texto puro) quando o LRCLIB não tem os timestamps
-- ⏭️ Avança automaticamente para a próxima música da lista ao final
-- ⌨️ Atalhos de teclado
-- 📱 Layout responsivo (empilha os painéis em janelas estreitas)
+## ✨ Features
 
-## 🚀 Como executar
+- 🔍 **Search for music** on YouTube (title, channel, duration, views, and thumbnail).
+- ▶️ **Built-in player** with custom controls: play/pause, previous/next, progress bar, and volume.
+- 📜 **LRCLIB synchronized lyrics** — the current line is highlighted as the song plays, with automatic scrolling.
+- 🖱️ **Click any lyric line** to jump directly to that moment in the song.
+- 🎵 **Playlists** — create, rename, and delete playlists; add songs using the ➕ button in search results or the player; reorder tracks (⬆⬇), remove tracks (✕), and play in sequence or **shuffle** (🔀).
+- 💾 **Persistent playlists** stored in `localStorage` — they remain available after closing the app or refreshing the page.
+- 🧠 **Smart lyrics matching** — cleans up video titles ("Official Video", "Lyrics", "[4K]", etc.), separates artist and track names, recognizes "* - Topic" channels as artists, and prioritizes results with matching durations.
+- ↩️ **Fallback to plain lyrics** when LRCLIB doesn't have synchronized timestamps.
+- ⏭️ Automatically plays the next song in the queue when the current track ends.
+- ⌨️ Keyboard shortcuts.
+- 📱 Responsive layout (panels stack vertically on narrower windows).
 
-Requisitos: [Node.js](https://nodejs.org) 18+ (usa `fetch` nativo).
+## 🚀 Getting Started
 
-### 🖥️ App desktop (Electron) — recomendado
+Requirements: [Node.js](https://nodejs.org) 18+ (uses native `fetch`).
+
+### 🖥️ Desktop App (Electron) — Recommended
 
 ```bash
 npm install
 npm start
 ```
 
-Abre uma janela nativa com o player. O app sobe o servidor local automaticamente em uma porta livre — sem precisar rodar `node server.js` à parte.
+Opens a native window with the player. The app automatically starts the local server on an available port — no need to run `node server.js` separately.
 
-**Gerar instalador:**
+**Build an installer:**
 
 ```bash
-npm run dist    # gera o instalador (Windows .exe, Linux .AppImage, macOS .dmg)
-npm run pack    # só a pasta do app, sem instalador
+npm run dist    # Generates installers (Windows .exe, Linux .AppImage, macOS .dmg)
+npm run pack    # Packages the app folder without an installer
 ```
 
-### 🌐 Versão web no navegador
+### 🌐 Web Version (Browser)
 
 ```bash
 npm run web
 ```
 
-Abra **http://localhost:3000** no navegador. Para usar outra porta: `PORT=8080 npm run web`.
+Open **http://localhost:3000** in your browser. To use a different port: `PORT=8080 npm run web`.
 
-> ⚠️ Acesse via `localhost` (não via `file://`): o player do YouTube precisa de um referrer HTTP válido.
+> ⚠️ Access the app through `localhost` (not `file://`): the YouTube player requires a valid HTTP referrer.
 
-### ✨ Diferenças da versão Electron
+### ✨ Electron Version Differences
 
-- Janela nativa, com menu oculto (aparece no `Alt`) e atalhos de `F5` (recarregar) e `Ctrl+Shift+I` (devtools)
-- User-Agent do Chrome aplicado, evitando bloqueios do YouTube no embed
-- Trava de instância única (abrir de novo foca a janela existente)
-- Links externos abrem no navegador padrão do sistema
+- Native window with a hidden menu (press `Alt` to show it), plus `F5` (reload) and `Ctrl+Shift+I` (DevTools) shortcuts.
+- Chrome User-Agent applied to help avoid YouTube embed restrictions.
+- Single-instance lock (launching the app again focuses the existing window).
+- External links open in the system's default browser.
 
-## 🎹 Atalhos de teclado
+## 🎹 Keyboard Shortcuts
 
-| Tecla | Ação |
+| Key | Action |
 |---|---|
-| `Espaço` | Tocar / pausar |
-| `→` | Avançar 5 s |
-| `←` | Voltar 5 s |
+| `Space` | Play / Pause |
+| `→` | Forward 5 seconds |
+| `←` | Rewind 5 seconds |
 
-## 🏗️ Como funciona
+## 🏗️ How It Works
 
+```text
+Electron Window or Browser ──▶ Node (server.js) ──▶ Piped Instances (YouTube video search)
+                                      │
+                                      └────────────▶ lrclib.net (synchronized lyrics)
 ```
-Janela (Electron) ou Navegador ──▶ Node (server.js) ──▶ Instâncias Piped  (busca de vídeos do YouTube)
-                                        │
-                                        └────────────▶ lrclib.net         (letras sincronizadas)
-```
 
-- **Busca**: o navegador não fala com o YouTube diretamente. O servidor consulta instâncias públicas da API [Piped](https://github.com/TeamPiped/Piped) com *fallback* automático entre várias instâncias, e devolve os resultados como JSON.
-- **Reprodução**: player oficial do [YouTube IFrame API](https://developers.google.com/youtube/iframe_api_reference), carregado no cliente.
-- **Letras**: o servidor consulta a API pública [LRCLIB](https://lrclib.net/) — primeiro por combinação exata (artista + faixa + duração), depois por busca livre com pontuação (prefere letras sincronizadas e duração próxima).
-- **Sincronização**: o cliente parseia o formato [LRC](https://www.lyrics.com/lyrics-formats.asp) (`[mm:ss.xx] linha`) e, a cada 250 ms, compara o tempo do player com os timestamps para destacar a linha atual.
+- **Search:** The browser does not communicate directly with YouTube. The server queries public [Piped](https://github.com/TeamPiped/Piped) API instances, automatically falling back between multiple instances, and returns the results as JSON.
+- **Playback:** Uses the official [YouTube IFrame API](https://developers.google.com/youtube/iframe_api_reference), loaded on the client side.
+- **Lyrics:** The server queries the public [LRCLIB](https://lrclib.net/) API — first using an exact match (artist + track + duration), then performing a scored search that prioritizes synchronized lyrics and similar durations.
+- **Synchronization:** The client parses the [LRC format](https://www.lyrics.com/lyrics-formats.asp) (`[mm:ss.xx] line`) and checks the player's current position every 250 ms to highlight the active lyric line.
 
-O proxy no servidor evita problemas de CORS e esconde as instâncias usadas do cliente.
+The server-side proxy avoids CORS issues and keeps the list of API instances hidden from the client.
 
-## 📁 Estrutura do projeto
+## 📁 Project Structure
 
-```
-├── server.js          # Servidor HTTP (Node puro, sem dependências)
-│                      #   /api/search → busca no YouTube (Piped)
-│                      #   /api/lyrics → letras (LRCLIB)
-│                      #   + arquivos estáticos de public/
-├── package.json       # Scripts npm (start, web, dist) e config do electron-builder
+```text
+├── server.js          # HTTP server (pure Node.js, no dependencies)
+│                      #   /api/search → YouTube search (Piped)
+│                      #   /api/lyrics → Lyrics (LRCLIB)
+│                      #   + static files from public/
+├── package.json       # npm scripts (start, web, dist) and electron-builder config
 ├── electron/
-│   ├── main.js        # Processo principal: janela, UA do Chrome, porta livre
-│   └── preload.js     # Expõe info mínima (plataforma/versão) ao renderer
+│   ├── main.js        # Main process: window, Chrome UA, available port
+│   └── preload.js     # Exposes minimal information (platform/version) to the renderer
 └── public/
-    ├── index.html     # Layout: abas Busca/Playlists, player, letras e modais
-    ├── style.css      # Tema escuro
-    └── app.js         # Player, fila de músicas, playlists (localStorage) e sincronização da letra
+    ├── index.html     # Layout: Search/Playlists tabs, player, lyrics, and modals
+    ├── style.css      # Dark theme
+    └── app.js         # Player, music queue, playlists (localStorage), and lyric synchronization
 ```
 
-## 🔌 Endpoints da API
+## 🔌 API Endpoints
 
-| Rota | Parâmetros | Descrição |
+| Route | Parameters | Description |
 |---|---|---|
-| `GET /api/search` | `q` | Busca vídeos no YouTube; retorna `{ source, items[] }` com `id`, `title`, `uploader`, `duration`, `views`, `thumbnail` |
-| `GET /api/lyrics` | `query`, `trackName`, `artistName`, `albumName`, `duration` | Consulta o LRCLIB; retorna `{ trackName, artistName, synced, syncedLyrics, plainLyrics, ... }` |
+| `GET /api/search` | `q` | Searches YouTube videos; returns `{ source, items[] }` containing `id`, `title`, `uploader`, `duration`, `views`, and `thumbnail`. |
+| `GET /api/lyrics` | `query`, `trackName`, `artistName`, `albumName`, `duration` | Queries LRCLIB; returns `{ trackName, artistName, synced, syncedLyrics, plainLyrics, ... }`. |
 
-As **playlists** são salvas no `localStorage` do navegador/app (chave `ytplayer.playlists`) — 100% no cliente, sem endpoint.
+**Playlists** are stored in the browser/app's `localStorage` (key: `ytplayer.playlists`) — entirely client-side, with no API endpoint required.
 
-## ⚠️ Notas
+## ⚠️ Notes
 
-- Se uma música não tiver letra, o LRCLIB não possui a faixa — o vídeo continua tocando normalmente e o painel mostra "não encontrada".
-- Instâncias Piped são comunitárias e às vezes caem; o servidor tenta a próxima automaticamente. Se todas falharem, ajuste a lista `PIPED_INSTANCES` em `server.js`.
-- Este projeto é apenas para uso pessoal/educacional e não hospeda nenhum conteúdo — tudo é reproduzido do YouTube.
+- If a song has no lyrics, LRCLIB does not have that track in its database. The video will continue playing normally, and the lyrics panel will display "Not found".
+- Piped instances are community-maintained and may occasionally go offline. The server automatically tries the next instance. If all instances fail, you can update the `PIPED_INSTANCES` list in `server.js`.
+- This project is intended for personal/educational use only and does not host any content — all media is played directly from YouTube.
 
-## 📄 Licença
+## 📄 License
 
 MIT
